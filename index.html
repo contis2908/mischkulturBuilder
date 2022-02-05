@@ -26,8 +26,9 @@
         <!-- Lit-setup -->
         <script type="module">
             import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.2.1/lit-element.js?module';
-            import interact from 'https://cdn.interactjs.io/v1.10.11/interactjs/index.js'
-            import plantData from '/plantDataArray.json' assert { type: "json" };
+            import interact from 'https://cdn.interactjs.io/v1.10.11/interactjs/index.js';
+            // import plantData from '/plantDataArray.json' assert { type: "json" };
+            import plantData from 'mischkulturBuilder/plantDataArray.json' assert { type: "json" };
 
             class MyGarden extends LitElement {
                 static get styles() {
@@ -49,16 +50,20 @@
                                 box-sizing: border-box;
                             }
                             #itemWrapper {
-                                height: 200px;
+                                max-height: 250px;
+                                max-width: 960px;
                                 overflow: scroll;
+                                display: flex;
+                                flex-wrap: wrap;
+                                margin: 0 auto;
                             }
                             .dropzone {
                                 position: relative;
                                 z-index: 1;
-                                width: 400px;
-                                height: 200px;
+                                width: 600px;
+                                height: 400px;
+                                margin: 32px auto 0 auto;
                                 border-radius: 8px;
-                                margin: 1rem 0 0 0;
                                 color: white;
                                 touch-action: none;
                                 box-sizing: border-box;
@@ -68,9 +73,13 @@
                             }
 
                             .dropItem {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                width: 100px;
                                 position: relative;
                                 z-index: 2;
-                                display: inline-block;
                                 min-width: 160px;
                                 min-height: 45px;
                                 padding: 8px;
@@ -100,7 +109,14 @@
                             .dropzone .dropItem {
                                 cursor: default;
                                 color: white;
-                                background-color: #138613;
+
+                                /* From https://css.glass */
+                                background: rgba(255, 255, 255, 0.22);
+                                border-radius: 16px;
+                                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                                backdrop-filter: blur(5px);
+                                -webkit-backdrop-filter: blur(5px);
+                                border: 1px solid rgba(255, 255, 255, 0.3);
                             }
 
                             .dropzone .dropItem .removeIcon {
@@ -129,13 +145,13 @@
 
                         data = this.plantData.map(data => {
                             if(blocked.includes(data.id)) {
-                                data.state = 'block'
+                                data.state = 'block' //remove the already selected ones in case the overlap with new added ones
                                 return data
                             } else if(favored.includes(data.id) && !ids.includes(data.id)) {
                                 data.state = 'favor'
                                 return data
                             } else {
-                                data.state = 'inital'
+                                data.state = 'inital' //remove the already selected ones in case the overlap with new added ones
                                 return data
                             }
                             
@@ -148,15 +164,19 @@
                         <main>
                             <div id="itemWrapper">
                                 ${data.map(
-                                    (item) => item.state === 'inital' || item.state === 'favor' ? html`
-                                        <div id="drag${item.id}" class="dropItem ${item.state === 'favor'?'favor':''}"
-                                            @dragstart="${this.dragstart_handler}"
-                                            @dragend="${this.dragend_handler}"
-                                            draggable="true">
-                                            <span>${item.name}</span>
-                                            <div class="removeIcon" @click="${(ev) => this.removeSelection(item.id)}">remove</div>
-                                        </div>
-                                    ` : html``,
+                                    (item) => {
+                                        // const styles = { width: item.radius*2, height: item.radius*2 };
+                                        // style=${styleMap(styles)}
+                                        return item.state === 'inital' || item.state === 'favor' ? html`
+                                            <div id="drag${item.id}" class="dropItem ${item.state === 'favor'?'favor':''}"
+                                                @dragstart="${this.dragstart_handler}"
+                                                @dragend="${this.dragend_handler}"
+                                                draggable="true">
+                                                    <span>${item.name}</span>
+                                                    <div class="removeIcon" @click="${(ev) => this.removeSelection(item.id)}">remove</div>
+                                            </div>
+                                        ` : html``
+                                    }
                                 )}  
                             </div>
 
@@ -311,7 +331,6 @@
 
                                 target.setAttribute('data-x', x)
                                 target.setAttribute('data-y', y)
-                                // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
                             }
                         },
                         modifiers: [
