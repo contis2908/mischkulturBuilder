@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>How to garden</title>
+        <style>
+            * {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                -webkit-tap-highlight-color: transparent;
+                outline: none;
+            }
+            
+            body {                
+                font-family: Helvetica, Arial, sans-serif;
+                font-weight: 100;
+                line-height: 1.5;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        </style>
+    </head>
+    <body>
+        <my-garden></my-garden>
+        <!-- Lit-setup -->
+        <script type="module">
+            import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.2.1/lit-element.js?module';
+            import interact from 'https://cdn.interactjs.io/v1.10.11/interactjs/index.js'
+            import plantData from '/plantDataArray.json' assert { type: "json" };
+
+            class MyGarden extends LitElement {
+                static get styles() {
+                        return [ css `
+                            :host {
+                                display: inline-block;
+                                font-family: sans-serif;
+                                width: 100%;
+                            }
+
+                            :host([hidden]) {
+                                display: none;
+                            }
+                            main {
+                                min-height: 100vh;
+                                width: 100%;
+                                margin: 0;
+                                padding: 16px;
+                                box-sizing: border-box;
+                            }
+                            #itemWrapper {
+                                height: 200px;
+                                overflow: scroll;
+                            }
+                            .dropzone {
+                                position: relative;
+                                z-index: 1;
+                                width: 400px;
+                                height: 200px;
+                                border-radius: 8px;
+                                margin: 1rem 0 0 0;
+                                color: white;
+                                touch-action: none;
+                                box-sizing: border-box;
+                                background-color: #d4b3b3;
+                                padding: 10px;
+                                transition: background-color 0.3s;
+                            }
+
+                            .dropItem {
+                                position: relative;
+                                z-index: 2;
+                                display: inline-block;
+                                min-width: 160px;
+                                min-height: 45px;
+                                padding: 8px;
+                                margin: 8px;
+                                color: black;
+                                border-radius: 4px;
+                                background-color: #acc4ba;
+                                touch-action: none;
+                                transform: translate(0px, 0px);
+                                transition: background-color 0.3s;
+                                cursor: grab;
+                            }
+
+                            .favor {
+                                background-color: #97e08f;
+                            }
+
+                            .removeIcon {
+                                display: none;
+                                font-size: 8px;
+                            }
+
+                            .grabbing {
+                                cursor: grabbing;
+                            }
+
+                            .dropzone .dropItem {
+                                cursor: default;
+                                color: white;
+                                background-color: #138613;
+                            }
+
+                            .dropzone .dropItem .removeIcon {
+                                display: inline;
+                            }
+
+
+                        `
+                ]}
+                render() {
+                    var data;
+
+                    if(this.selectedArray.length) {
+
+                        let blocked = [];
+                        let favored = [];
+                        let ids = [];
+
+                        for (let i of this.selectedArray) {
+                            ids.push(i.id)
+                            blocked.push(...i.block)
+                            blocked = Array.from(new Set(blocked));
+                            favored.push(...i.allow)
+                            favored = Array.from(new Set(favored));
+                        }
+
+                        data = this.plantData.map(data => {
+                            if(blocked.includes(data.id)) {
+                                data.state = 'block'
+                                return data
+                            } else if(favored.includes(data.id) && !ids.includes(data.id)) {
+                                data.state = 'favor'
+                                return data
+                            } else {
+                                data.state = 'inital'
+                                return data
+                            }
+                            
+                        })
+                    } else {
+                        data = this.plantData
+                    }
+                    
+                    return html`
+                        <main>
+                            <div id="itemWrapper">
+                                ${data.map(
+                                    (item) => item.state === 'inital' || item.state === 'favor' ? html`
+                                        <div id="drag${item.id}" class="dropItem ${item.state === 'favor'?'favor':''}"
+                                            @dragstart="${this.dragstart_handler}"
+                                            @dragend="${this.dragend_handler}"
+                                            draggable="true">
+                                            <span>${item.name}</span>
+                                            <div class="removeIcon" @click="${(ev) => this.removeSelection(item.id)}">remove</div>
+                                        </div>
+                                    ` : html``,
+                                )}  
+                            </div>
+
+                            <div class="dropzone"
+                                @drop="${this.drop_handler}"
+                                @dragover="${this.dragover_handler}"
+                                @dragleave="${this.dragleave_handler}">
+                            </div>
+                        </main>
+                        
+                    `;
+                }
+
+
+                static get properties() {
+                    return {
+                        plantData: { type: Array },
+                        dragPositions: {type: Function},
+                        transformProp: {type: String},
+                        selectedArray: { type: Array}
+                    };
+                }
+
+                constructor() {
+                    super()
+                    this.plantData = []
+                    this.transformProp = '';
+                    this.dragPositions = [1, 2, 3, 4].reduce((acc, n) => {
+                        acc[`drag${n}`] = { x: 0, y: 0 }
+                        return acc
+                    }, {})
+                    this.selectedArray = []
+
+                }
+
+                firstUpdated() {   
+                    this.plantData = plantData.data
+                    this.initInteractInit()
+                }
+
+                // updated(changedProperties) {
+                //     changedProperties.forEach((oldValue, propName) => {
+                //         console.log('???????!!!!!!! ', oldValue, propName)
+                //     })
+                // }
+
+                removeSelection(id) {
+                    const element = this.shadowRoot.querySelector(`#drag${id}`)
+                    const idToRevive = this.selectedArray.find(data => data.id == id)
+                    const itemWrapper = this.shadowRoot.querySelector(`#itemWrapper`)
+                    
+                    element.style.transform = 'none'
+                    element.removeAttribute('data-x')
+                    element.removeAttribute('data-y')
+                    element.classList.remove('droped')
+                    itemWrapper.insertBefore(element, this.shadowRoot.querySelector(`#drag${id+1}`));
+                    // element.remove()
+
+                    for(let i of this.plantData) {
+                        if(idToRevive.block.includes(i.id)) {
+                            i.state = 'inital'
+                        }
+                        if(idToRevive.allow.includes(i.id)) {
+                            i.state = 'inital'
+                        }                       
+                    }
+
+                    this.selectedArray = this.selectedArray.filter((item) => item.id !== id )
+                    this.requestUpdate()
+                }
+
+                dragstart_handler(ev) {
+                    // Create an image and then use it for the drag image.
+                    // NOTE: change "example.gif" to a real image URL or the image
+                    // will not be created and the default drag image will be used.
+                    // let img = new Image();
+                    // img.src = '/plant.png';
+                    // ev.dataTransfer.setDragImage(img, 10, 10);
+
+                    // Add this element's id to the drag payload so the drop handler will
+                    // know which element to add to its tree
+                    ev.target.classList.add('grabbing')
+                    ev.dataTransfer.setData("text", ev.target.id);
+                    ev.dataTransfer.effectAllowed = "move";
+                }
+
+                dragend_handler(ev) {
+                    ev.target.classList.remove('grabbing')
+                }
+
+                dragover_handler (ev) {
+                    ev.preventDefault();
+                    ev.target.style.background = "purple";
+                    ev.dataTransfer.dropEffect = "move";
+                }
+
+                dragleave_handler (ev) {
+                    ev.target.style.background = "";
+                }
+                
+                drop_handler (ev) {
+                    ev.preventDefault();
+                    if (!ev.target) return
+                    // Get the id of the target and add the moved element to the target's DOM
+                    ev.target.style.background = "";
+
+                    const idName = ev.dataTransfer.getData("text/plain");
+                    const element = this.shadowRoot.querySelector(`#${idName}`)
+                    
+                    element.classList.add('droped')
+                    element.classList.remove('favor')
+                    ev.target.appendChild(element);
+
+                    const selectedElement = this.plantData.find(data => data.id == idName.substring(4))
+                    const item = {
+                        id: selectedElement.id,
+                        block: selectedElement.ratio.block,
+                        allow: selectedElement.ratio.favor
+                    }
+                    this.selectedArray.push(item)
+
+                    this.initInteractDrag()
+
+                    this.requestUpdate()
+                    
+                }
+
+                initInteractInit() {
+
+                    interact('.dropzone')
+                    .resizable({
+                        // resize from all edges and corners
+                        edges: { left: true, right: true, bottom: true, top: true },
+
+                        listeners: {
+                            move (event) {
+                                var target = event.target
+                                var x;
+                                var y;
+                                x = (parseFloat(target.getAttribute('data-x')) || 0)
+                                y = (parseFloat(target.getAttribute('data-y')) || 0)
+
+                                // update the element's style
+                                target.style.width = event.rect.width + 'px'
+                                target.style.height = event.rect.height + 'px'
+
+                                // translate when resizing from top or left edges
+                                x += event.deltaRect.left
+                                y += event.deltaRect.top
+
+                                target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
+
+                                target.setAttribute('data-x', x)
+                                target.setAttribute('data-y', y)
+                                // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+                            }
+                        },
+                        modifiers: [
+                            // keep the edges inside the parent
+                            interact.modifiers.restrictEdges({
+                                outer: 'parent'
+                            }),
+
+                            // minimum size
+                            interact.modifiers.restrictSize({
+                                min: { width: 400, height: 200 }
+                            })
+                        ],
+
+                        inertia: true
+                    })
+                }
+
+                initInteractDrag() {
+                    interact('.droped')
+                    .draggable({
+                        // enable inertial throwing
+                        inertia: true,
+                        // keep the element within the area of it's parent
+                        modifiers: [
+                            interact.modifiers.restrictRect({
+                                restriction: '.dropzone',
+                                endOnly: true
+                            })
+                        ],
+                        // enable autoScroll
+                        autoScroll: true,
+
+                        listeners: {
+                            // call this function on every dragmove event
+                            move: this.dragMoveListener,
+
+                            // call this function on every dragend event
+                            end (event) {
+                            }
+                        }
+                    })
+                }
+
+                dragMoveListener(event) {
+                    var target = event.target
+                    // keep the dragged position in the data-x/data-y attributes
+                    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+                    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+
+                    // translate the element
+                    target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+
+                    // update the posiion attributes
+                    target.setAttribute('data-x', x)
+                    target.setAttribute('data-y', y)
+                }
+
+            }
+            window.customElements.define('my-garden', MyGarden);
+        </script>
+    </body>
+</html>

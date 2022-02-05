@@ -1,0 +1,398 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Auberginen",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [2,5,18,20,28,36],
+                "block": [9,16,24,33]
+            }
+        },
+        {
+            "id": 2,
+            "name": "Blumemkohl",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [1,5,9,16,35],
+                "block": [18,31,39]
+            }
+        },
+        {
+            "id": 3,
+            "name": "Bohnen",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [4,6,7,10,23,16,18,19,20,25,28,30,32,33,34,35,36,38],
+                "block": [9,12,17,21,39]
+            }
+        },
+        {
+            "id": 4,
+            "name": "Bohnenkraut",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,20,28,33],
+                "block": []
+            }
+        },
+        {
+            "id": 5,
+            "name": "Brokkoli",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [1,2,9,16,35],
+                "block": [18,39]
+            }
+        },
+        {
+            "id": 6,
+            "name": "Chicorée",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,12,20,25],
+                "block": []
+            }
+        },
+        {
+            "id": 7,
+            "name": "Dill",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,9,13,15,18,20,28,33,39],
+                "block": []
+            }
+        },
+        {
+            "id": 8,
+            "name": "Endivien",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,18,21],
+                "block": []
+            }
+        },
+        {
+            "id": 9,
+            "name": "Erbsen",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [2,5,7,12,13,18,19,20,22,23,25,30,32,36,38],
+                "block": [1,3,16,17,21,24,39]
+            }
+        },
+        {
+            "id": 10,
+            "name": "Erdbeeren",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,17,20,21],
+                "block": [18]
+            }
+        },
+        {
+            "id": 11,
+            "name": "Feldsalat",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,9,18,19,21,39],
+                "block": []
+            }
+        },
+        {
+            "id": 12,
+            "name": "Fenchel",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [6,9,13,20,28],
+                "block": [3,19,24,37]
+            }
+        },
+        {
+            "id": 13,
+            "name": "Gurken",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,7,9,12,17,18,21,22,23,25,35,36,39],
+                "block": [30,32,37]
+            }
+        },
+        {
+            "id": 14,
+            "name": "Kapuzinerkresse",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [16],
+                "block": []
+            }
+        },
+        {
+            "id": 15,
+            "name": "Karotten",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [6,7,9,17,20,21,23,24,27,30,32,34,37,38],
+                "block": []
+            }
+        },
+        {
+            "id": 16,
+            "name": "Kartoffeln",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [2,3,5,14,19,22,27,36],
+                "block": [1,9,18,24,28,33,35,37,39]
+            }
+        },
+        {
+            "id": 17,
+            "name": "Knoblauch",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [10,13,15,33,36,39],
+                "block": [3,9,18]
+            }
+        },
+        {
+            "id": 18,
+            "name": "Kohl",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [1,3,7,9,13,20,21,23,24,27,30,32,33,35,36,36],
+                "block": [2,5,16,17,19,39]
+            }
+        },
+        {
+            "id": 19,
+            "name": "Kohlrabi",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,9,16,20,33,35,36,37],
+                "block": [12,18]
+            }
+        },
+    
+        {
+            "id": 20,
+            "name": "Kopfsalat",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [1,3,4,6,7,9,10,12,13,15,18,19],
+                "block": []
+            }
+        },
+        {
+            "id": 21,
+            "name": "Lauch",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [8,10,11,13,15,18],
+                "block": [3,9]
+            }
+        },
+        {
+            "id": 22,
+            "name": "Mais",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [9,16],
+                "block": []
+            }
+        },
+        {
+            "id": 23,
+            "name": "Mangold",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [9,15,18],
+                "block": []
+            }
+        },
+        {
+            "id": 24,
+            "name": "Paprika",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [13,15,18],
+                "block": [1,9,12,16]
+            }
+        },
+        {
+            "id": 25,
+            "name": "Pastinaken",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,6,9],
+                "block": []
+            }
+        },
+        {
+            "id": 26,
+            "name": "Petersilie",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [],
+                "block": []
+            }
+        },
+        {
+            "id": 27,
+            "name": "Pfefferminze",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [15,16,18],
+                "block": []
+            }
+        },
+        {
+            "id": 28,
+            "name": "Pflücksalat",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [1,3,4,7,12],
+                "block": [16]
+            }
+        },
+        {
+            "id": 29,
+            "name": "Radicchio",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [],
+                "block": []
+            }
+        },
+        {
+            "id": 30,
+            "name": "Radieschen",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,9,10,15,18],
+                "block": [13]
+            }
+        },
+        {
+            "id": 31,
+            "name": "Rhabarber",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [],
+                "block": [2]
+            }
+        },
+        {
+            "id": 32,
+            "name": "Rettich",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,9,10,15,18],
+                "block": [13]
+            }
+        },
+        {
+            "id": 33,
+            "name": "Rote Beete",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,4,7,17,18,19],
+                "block": [1,16]
+            }
+        },
+        {
+            "id": 34,
+            "name": "Schwarwurzel",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [15],
+                "block": []
+            }
+        },
+        {
+            "id": 35,
+            "name": "Sellerie",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [2,3,5,13,18,19],
+                "block": [16]
+            }
+        },
+        {
+            "id": 36,
+            "name": "Spinat",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [1,3,9,10,13,16,17,18,19],
+                "block": []
+            }
+        },
+        {
+            "id": 37,
+            "name": "Tomaten",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [15,18,19],
+                "block": [12,13,16]
+            }
+        },
+        {
+            "id": 38,
+            "name": "Zucchini",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [3,9,15],
+                "block": []
+            }
+        },
+        {
+            "id": 39,
+            "name": "Zwiebel",
+            "img": "/plant.png",
+            "state": "inital",
+            "ratio": {
+                "favor": [7,10,11,13,17],
+                "block": [2,3,5,9,16,18]
+            }
+        }
+    ]
+}
+
+
+
