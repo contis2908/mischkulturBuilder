@@ -93,12 +93,19 @@
                                 cursor: grab;
                             }
 
+                            .dropItem img {
+                                pointer-events: none;
+                            }
+
                             .favor {
                                 background-color: #97e08f;
                             }
 
                             .removeIcon {
                                 display: none;
+                                position: absolute;
+                                right: 5px;
+                                top: 5px;
                                 font-size: 8px;
                             }
 
@@ -119,7 +126,7 @@
                                 border: 1px solid rgba(255, 255, 255, 0.3);
                             }
 
-                            .dropzone .dropItem .removeIcon {
+                            .dropzone .dropItem:hover .removeIcon {
                                 display: inline;
                             }
 
@@ -130,34 +137,34 @@
                     var data;
 
                     if(this.selectedArray.length) {
-
-                        let blocked = [];
-                        let favored = [];
-                        let ids = [];
-
-                        for (let i of this.selectedArray) {
-                            ids.push(i.id)
-                            blocked.push(...i.block)
-                            blocked = Array.from(new Set(blocked));
-                            favored.push(...i.allow)
-                            favored = Array.from(new Set(favored));
-                        }
-
-                        data = this.plantData.map(data => {
-                            if(blocked.includes(data.id)) {
-                                data.state = 'block' //remove the already selected ones in case the overlap with new added ones
-                                return data
-                            } else if(favored.includes(data.id) && !ids.includes(data.id)) {
-                                data.state = 'favor'
-                                return data
-                            } else {
-                                data.state = 'inital' //remove the already selected ones in case the overlap with new added ones
-                                return data
-                            }
+                        
+                        data = this.plantData
+                        data = data.sort((a, b) => {
+                            const stateA = a.state === 'favor' ? 1 : 0
+                            const stateB = b.state === 'favor' ? 1 : 0
                             
-                        })
+                            if (stateA > stateB) {
+                                return -1;
+                            } else if (stateA < stateB) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        });
                     } else {
                         data = this.plantData
+                        data = data.sort((a, b) => {
+                            const stateA = a.name[0]
+                            const stateB = b.name[0]
+                            
+                            if (stateA < stateB) {
+                                return -1;
+                            } else if (stateA > stateB) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        });
                     }
                     
                     return html`
@@ -172,8 +179,9 @@
                                                 @dragstart="${this.dragstart_handler}"
                                                 @dragend="${this.dragend_handler}"
                                                 draggable="true">
+                                                    <img src="img/${item.img}" alt="" width="50">
                                                     <span>${item.name}</span>
-                                                    <div class="removeIcon" @click="${(ev) => this.removeSelection(item.id)}">remove</div>
+                                                    ${this.returnRemoveIcon()}
                                             </div>
                                         ` : html``
                                     }
@@ -185,8 +193,13 @@
                                 @dragover="${this.dragover_handler}"
                                 @dragleave="${this.dragleave_handler}">
                             </div>
+
+                            ${this.selectedArray.map(
+                                    (item) => {
+                                        return html`<div>${item.description}</div>`
+                                    }
+                                )} 
                         </main>
-                        
                     `;
                 }
 
@@ -217,34 +230,82 @@
                     this.initInteractInit()
                 }
 
+                returnRemoveIcon() {
+                    return html`
+                        <svg class="removeIcon" version="1.0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 700.000000 700.000000" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,700.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                            <path d="M3230 6990 c-723 -63 -1376 -325 -1940 -779 -122 -98 -403 -379 -501
+                            -501 -878 -1091 -1035 -2550 -409 -3790 154 -304 391 -645 481 -691 120 -61
+                            273 7 309 137 23 79 3 141 -73 235 -157 193 -323 477 -427 731 -150 363 -218
+                            691 -227 1094 -11 464 57 831 236 1265 201 489 589 976 1030 1293 434 312 921
+                            499 1456 561 166 19 500 19 671 0 1168 -130 2156 -914 2551 -2025 202 -566
+                            229 -1198 78 -1785 -194 -752 -671 -1404 -1339 -1828 -477 -304 -1042 -467
+                            -1617 -467 -526 0 -966 108 -1450 357 -124 64 -154 75 -195 75 -67 0 -128 -27
+                            -168 -73 -78 -92 -71 -215 18 -297 80 -74 482 -260 724 -336 1049 -328 2175
+                            -156 3066 468 325 228 634 537 862 862 617 880 793 1991 479 3029 -99 330
+                            -274 686 -479 979 -218 310 -534 631 -829 839 -495 351 -1036 560 -1632 632
+                            -157 19 -530 27 -675 15z"></path>
+                            <path d="M2095 5011 c-104 -48 -153 -173 -110 -279 11 -26 198 -219 613 -634
+                            l597 -598 -597 -597 c-415 -416 -602 -609 -613 -635 -31 -76 -13 -172 43 -232
+                            58 -61 161 -83 240 -51 26 11 219 198 635 613 l597 597 598 -597 c415 -415
+                            608 -602 634 -613 79 -32 182 -10 240 51 56 60 74 156 43 232 -11 26 -198 219
+                            -613 635 l-597 597 597 598 c415 415 602 608 613 634 32 79 10 182 -51 240
+                            -60 56 -156 74 -232 43 -26 -11 -219 -198 -634 -613 l-598 -597 -597 597
+                            c-416 415 -609 602 -635 613 -50 20 -124 19 -173 -4z"></path>
+                            </g>
+                        </svg>
+                    `
+                }
+
                 // updated(changedProperties) {
                 //     changedProperties.forEach((oldValue, propName) => {
                 //         console.log('???????!!!!!!! ', oldValue, propName)
                 //     })
                 // }
 
-                removeSelection(id) {
-                    const element = this.shadowRoot.querySelector(`#drag${id}`)
-                    const idToRevive = this.selectedArray.find(data => data.id == id)
-                    const itemWrapper = this.shadowRoot.querySelector(`#itemWrapper`)
-                    
-                    element.style.transform = 'none'
-                    element.removeAttribute('data-x')
-                    element.removeAttribute('data-y')
-                    element.classList.remove('droped')
-                    itemWrapper.insertBefore(element, this.shadowRoot.querySelector(`#drag${id+1}`));
-                    // element.remove()
+                removeSelection(idName) {
+                    const id = idName.substring(4)
+                    const removeItem = this.selectedArray.find(data => data.id == id)
+                    const dropzone = this.shadowRoot.querySelector(`.dropzone`)
+                    const element = dropzone.querySelector(`#${idName}`)
 
-                    for(let i of this.plantData) {
-                        if(idToRevive.block.includes(i.id)) {
-                            i.state = 'inital'
-                        }
-                        if(idToRevive.allow.includes(i.id)) {
-                            i.state = 'inital'
-                        }                       
+                    element.remove()
+
+                    this.plantData.find(data => data.id == id).state = 'inital'
+
+                    const elementFinder = (element) => element.id == id;
+                    this.selectedArray.splice(this.selectedArray.findIndex(elementFinder),1)
+
+                    let blocked = [];
+                    let favored = [];
+                    let ids = [];
+
+                    for (let i of this.selectedArray) {
+                        ids.push(i.id)
+                        blocked.push(...i.block)
+                        blocked = Array.from(new Set(blocked));
+                        favored.push(...i.allow)
+                        favored = Array.from(new Set(favored));
                     }
 
-                    this.selectedArray = this.selectedArray.filter((item) => item.id !== id )
+                    this.plantData = this.plantData.map(data => {
+                        if(blocked.includes(data.id) && !ids.includes(data.id)) {
+                            data.state = 'block'
+                            return data
+                        } else if(favored.includes(data.id) && !ids.includes(data.id)) {
+                            data.state = 'favor'
+                            return data
+                        }
+                        else if(ids.includes(data.id)) {
+                            data.state = 'used'
+                            return data
+                        }
+                        else {
+                            data.state = 'inital'
+                            return data
+                        }
+                    })
+
                     this.requestUpdate()
                 }
 
@@ -260,7 +321,8 @@
                     // know which element to add to its tree
                     ev.target.classList.add('grabbing')
                     ev.dataTransfer.setData("text", ev.target.id);
-                    ev.dataTransfer.effectAllowed = "move";
+                    ev.dataTransfer.effectAllowed = "copy";
+                    ev.dataTransfer.dropEffect = "copy";
                 }
 
                 dragend_handler(ev) {
@@ -270,7 +332,7 @@
                 dragover_handler (ev) {
                     ev.preventDefault();
                     ev.target.style.background = "purple";
-                    ev.dataTransfer.dropEffect = "move";
+                    ev.dataTransfer.dropEffect = "copy";
                 }
 
                 dragleave_handler (ev) {
@@ -285,18 +347,57 @@
 
                     const idName = ev.dataTransfer.getData("text/plain");
                     const element = this.shadowRoot.querySelector(`#${idName}`)
+                    // element.classList.remove('favor')
+
+                    const elementCopy = element.cloneNode(true);
+                    elementCopy.classList.add('droped')
+                    elementCopy.querySelector('.removeIcon').addEventListener("click", () =>{
+                        this.removeSelection(idName)
+                    });
+                    ev.target.appendChild(elementCopy);
+
+
+                    // <div class="removeIcon" @click="${(ev) => this.removeSelection(item.id)}">remove</div>
                     
-                    element.classList.add('droped')
-                    element.classList.remove('favor')
-                    ev.target.appendChild(element);
 
                     const selectedElement = this.plantData.find(data => data.id == idName.substring(4))
                     const item = {
                         id: selectedElement.id,
                         block: selectedElement.ratio.block,
-                        allow: selectedElement.ratio.favor
+                        allow: selectedElement.ratio.favor,
+                        // description: selectedElement.description
                     }
                     this.selectedArray.push(item)
+
+                    let blocked = [];
+                    let favored = [];
+                    let ids = [];
+
+                    for (let i of this.selectedArray) {
+                        ids.push(i.id)
+                        blocked.push(...i.block)
+                        blocked = Array.from(new Set(blocked));
+                        favored.push(...i.allow)
+                        favored = Array.from(new Set(favored));
+                    }
+
+                    this.plantData = this.plantData.map(data => {
+                        if(blocked.includes(data.id) && !ids.includes(data.id)) {
+                            data.state = 'block'
+                            return data
+                        } else if(favored.includes(data.id) && !ids.includes(data.id)) {
+                            data.state = 'favor'
+                            return data
+                        }
+                        else if(ids.includes(data.id)) {
+                            data.state = 'used'
+                            return data
+                        }
+                        else {
+                            data.state = 'inital'
+                            return data
+                        }
+                    })
 
                     this.initInteractDrag()
 

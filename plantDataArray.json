@@ -3,7 +3,8 @@
         {
             "id": 1,
             "name": "Auberginen",
-            "img": "/plant.png",
+            "description": "Vorzucht: März/April, Pflanzung: Mai-Juni, Direktsaat: -, Ernte: August",
+            "img": "Aubergine.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -14,7 +15,8 @@
         {
             "id": 2,
             "name": "Blumemkohl",
-            "img": "/plant.png",
+            "description": "Vorzucht: März-Mai, Pflanzung: April-Juni, Direktsaat: -, Ernte: Juli-Sep.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -25,7 +27,8 @@
         {
             "id": 3,
             "name": "Bohnen",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: Mai-Juli, Direktsaat: Mai-Juli, Ernte: Juli-Sep.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -36,7 +39,8 @@
         {
             "id": 4,
             "name": "Bohnenkraut",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -47,7 +51,8 @@
         {
             "id": 5,
             "name": "Brokkoli",
-            "img": "/plant.png",
+            "description": "Vorzucht: März-Juli, Pflanzung: Mai-Aug., Direktsaat: -, Ernte: Juli-Sep.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -58,7 +63,8 @@
         {
             "id": 6,
             "name": "Chicorée",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -69,7 +75,8 @@
         {
             "id": 7,
             "name": "Dill",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -80,7 +87,8 @@
         {
             "id": 8,
             "name": "Endivien",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -91,7 +99,8 @@
         {
             "id": 9,
             "name": "Erbsen",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: -, Direktsaat: März-Juni, Ernte: Juni-Sep.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -102,7 +111,8 @@
         {
             "id": 10,
             "name": "Erdbeeren",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: -, Direktsaat: Juli, Ernte: August - Oktober",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -113,7 +123,8 @@
         {
             "id": 11,
             "name": "Feldsalat",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -124,7 +135,8 @@
         {
             "id": 12,
             "name": "Fenchel",
-            "img": "/plant.png",
+            "description": "Vorzucht: März, Pflanzung: Mai, Direktsaat: Juni, Ernte: Juli",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -135,7 +147,8 @@
         {
             "id": 13,
             "name": "Gurken",
-            "img": "/plant.png",
+            "description": "Vorzucht: April, Pflanzung: Mai, Direktsaat: Mai, Ernte: August-Oktober",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -146,7 +159,8 @@
         {
             "id": 14,
             "name": "Kapuzinerkresse",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -157,7 +171,8 @@
         {
             "id": 15,
             "name": "Karotten",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: -, Direktsaat: März-Juli, Ernte: Juni-Okt.",
+            "img": "Karotte.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -168,7 +183,8 @@
         {
             "id": 16,
             "name": "Kartoffeln",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: April-Mai, Direktsaat: -, Ernte:Juni-Sep.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -179,7 +195,8 @@
         {
             "id": 17,
             "name": "Knoblauch",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: September-Oktobe, Direktsaat: -, Ernte: September",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -190,7 +207,8 @@
         {
             "id": 18,
             "name": "Kohl",
-            "img": "/plant.png",
+            "description": "Vorzucht: März-Juni, Pflanzung: April-Juli, Direktsaat: -, Ernte: Juli-Okt.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -201,7 +219,8 @@
         {
             "id": 19,
             "name": "Kohlrabi",
-            "img": "/plant.png",
+            "description": "Vorzucht: März-Juni, Pflanzung: April-Juli, Direktsaat: -, Ernte: Juli-Okt.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -213,7 +232,8 @@
         {
             "id": 20,
             "name": "Kopfsalat",
-            "img": "/plant.png",
+            "description": "",
+            "img": "Kopfsalat.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -224,7 +244,8 @@
         {
             "id": 21,
             "name": "Lauch",
-            "img": "/plant.png",
+            "description": "Lauch.png",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -235,7 +256,8 @@
         {
             "id": 22,
             "name": "Mais",
-            "img": "/plant.png",
+            "description": "Vorzucht: März-April, Pflanzung: Mai, Direktsaat: Mai, Ernte: Juli-September",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -246,7 +268,8 @@
         {
             "id": 23,
             "name": "Mangold",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: -, Direktsaat: April-Mai, Ernte: Juli-Aug.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -257,7 +280,8 @@
         {
             "id": 24,
             "name": "Paprika",
-            "img": "/plant.png",
+            "description": "Vorzucht: März/April, Pflanzung: Mai-Juni, Direktsaat: -, Ernte: Jul./Aug.",
+            "img": "Paprika.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -268,7 +292,8 @@
         {
             "id": 25,
             "name": "Pastinaken",
-            "img": "/plant.png",
+            "description": "Vorzucht: März, Pflanzung: März-April, Direktsaat: -, Ernte: September",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -279,7 +304,8 @@
         {
             "id": 26,
             "name": "Petersilie",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: März-April, Direktsaat: -, Ernte: August-September",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -290,7 +316,8 @@
         {
             "id": 27,
             "name": "Pfefferminze",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: Juli, Direktsaat: April bis Juni, Ernte: Frühjahr bis zum Herbst",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -301,7 +328,8 @@
         {
             "id": 28,
             "name": "Pflücksalat",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -312,7 +340,8 @@
         {
             "id": 29,
             "name": "Radicchio",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -323,7 +352,8 @@
         {
             "id": 30,
             "name": "Radieschen",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: -, Direktsaat: Feb.-Aug., Ernte: April-Sept.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -334,7 +364,8 @@
         {
             "id": 31,
             "name": "Rhabarber",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -345,7 +376,8 @@
         {
             "id": 32,
             "name": "Rettich",
-            "img": "/plant.png",
+            "description": "",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -356,7 +388,8 @@
         {
             "id": 33,
             "name": "Rote Beete",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: -, Direktsaat: März-Juli, Ernte: Juni-Nov.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -367,7 +400,8 @@
         {
             "id": 34,
             "name": "Schwarwurzel",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: Mitte März bis Mitte April , Direktsaat: -, Ernte: Oktober",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -378,7 +412,8 @@
         {
             "id": 35,
             "name": "Sellerie",
-            "img": "/plant.png",
+            "description": "Vorzucht: März/April, Pflanzung: Mai, Direktsaat: -, Ernte: Sep.-Nov.",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -389,7 +424,8 @@
         {
             "id": 36,
             "name": "Spinat",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung:  Mitte September, Direktsaat: -, Ernte: Mitte November bis Anfang April",
+            "img": "",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -400,7 +436,8 @@
         {
             "id": 37,
             "name": "Tomaten",
-            "img": "/plant.png",
+            "description": "Vorzucht: März/April, Pflanzung: Mai-Juni, Direktsaat: -, Ernte: Aug.-Okt.",
+            "img": "Tomate.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -411,7 +448,8 @@
         {
             "id": 38,
             "name": "Zucchini",
-            "img": "/plant.png",
+            "description": "Vorzucht: April, Pflanzung: Mitte Mai, Direktsaat: Mai, Ernte: Juli-August",
+            "img": "Zucchini.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -422,7 +460,8 @@
         {
             "id": 39,
             "name": "Zwiebel",
-            "img": "/plant.png",
+            "description": "Vorzucht: -, Pflanzung: März/April, Direktsaat: März, Ernte: Juni-Okt.",
+            "img": "Zwiebel.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
