@@ -12,7 +12,8 @@
                 outline: none;
             }
             
-            body {                
+            body {
+                margin: 0;             
                 font-family: Helvetica, Arial, sans-serif;
                 font-weight: 100;
                 line-height: 1.5;
@@ -27,8 +28,8 @@
         <script type="module">
             import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.2.1/lit-element.js?module';
             import interact from 'https://cdn.interactjs.io/v1.10.11/interactjs/index.js';
-            // import plantData from '/plantDataArray.json' assert { type: "json" };
-            import plantData from '/mischkulturBuilder/plantDataArray.json' assert { type: "json" };
+            import plantData from '/plantDataArray.json' assert { type: "json" };
+            // import plantData from '/mischkulturBuilder/plantDataArray.json' assert { type: "json" };
 
             class MyGarden extends LitElement {
                 static get styles() {
@@ -43,26 +44,28 @@
                                 display: none;
                             }
                             main {
-                                min-height: 100vh;
+                                height: 100vh;
                                 width: 100%;
                                 margin: 0;
                                 padding: 16px;
                                 box-sizing: border-box;
                             }
                             #itemWrapper {
-                                max-height: 250px;
-                                max-width: 960px;
                                 overflow: scroll;
                                 display: flex;
                                 flex-wrap: wrap;
-                                margin: 0 auto;
+                                margin: 0px auto;
+                                padding: 16px 0px 0px;
+                                box-sizing: border-box;
+                                height: 50%;
+                                margin-bottom: 16px;
                             }
                             .dropzone {
                                 position: relative;
                                 z-index: 1;
                                 width: 600px;
-                                height: 400px;
-                                margin: 32px auto 0 auto;
+                                min-height: 40%;
+                                margin: 32px auto 32px auto;
                                 border-radius: 8px;
                                 color: white;
                                 touch-action: none;
@@ -80,8 +83,7 @@
                                 width: 100px;
                                 position: relative;
                                 z-index: 2;
-                                min-width: 160px;
-                                min-height: 45px;
+                                height: auto;
                                 padding: 8px;
                                 margin: 8px;
                                 color: black;
@@ -105,8 +107,8 @@
                                 display: none;
                                 position: absolute;
                                 right: 5px;
-                                top: 5px;
-                                font-size: 8px;
+                                top: 0;
+                                font-size: 8px
                             }
 
                             .grabbing {
@@ -116,18 +118,37 @@
                             .dropzone .dropItem {
                                 cursor: default;
                                 color: white;
+                                width: 100px;
+                                min-width: auto;
+                                min-height: auto;
+                                padding: 0;
+                                margin: 8px;
+                                border-radius: 0;
+                                background-color: unset;
 
-                                /* From https://css.glass */
-                                background: rgba(255, 255, 255, 0.22);
-                                border-radius: 16px;
-                                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                                backdrop-filter: blur(5px);
-                                -webkit-backdrop-filter: blur(5px);
-                                border: 1px solid rgba(255, 255, 255, 0.3);
+                                // background: rgba(255, 255, 255, 0.22);
+                                // border-radius: 16px;
+                                // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                                // backdrop-filter: blur(5px);
+                                // -webkit-backdrop-filter: blur(5px);
+                                // border: 1px solid rgba(255, 255, 255, 0.3);
                             }
 
                             .dropzone .dropItem:hover .removeIcon {
                                 display: inline;
+                            }
+
+                            
+                            @media only screen and (max-width: 650px) {
+                                #itemWrapper {
+                                    height: 40%;
+                                    width: auto;
+                                }
+                                .dropzone {
+                                    width: auto;
+                                    height: 50%;
+                                    margin: 16px auto 0 auto;
+                                }
                             }
 
 
@@ -227,12 +248,12 @@
 
                 firstUpdated() {   
                     this.plantData = plantData.data
-                    this.initInteractInit()
+                    // this.initInteractInit()
                 }
 
                 returnRemoveIcon() {
                     return html`
-                        <svg class="removeIcon" version="1.0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 700.000000 700.000000" preserveAspectRatio="xMidYMid meet">
+                        <svg class="removeIcon" version="1.0" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 700.000000 700.000000" preserveAspectRatio="xMidYMid meet">
                             <g transform="translate(0.000000,700.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                             <path d="M3230 6990 c-723 -63 -1376 -325 -1940 -779 -122 -98 -403 -379 -501
                             -501 -878 -1091 -1035 -2550 -409 -3790 154 -304 391 -645 481 -691 120 -61
