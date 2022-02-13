@@ -16,7 +16,7 @@
             "id": 2,
             "name": "Blumemkohl",
             "description": "Vorzucht: März-Mai, Pflanzung: April-Juni, Direktsaat: -, Ernte: Juli-Sep.",
-            "img": "",
+            "img": "Blumenkohl.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -148,7 +148,7 @@
             "id": 13,
             "name": "Gurken",
             "description": "Vorzucht: April, Pflanzung: Mai, Direktsaat: Mai, Ernte: August-Oktober",
-            "img": "",
+            "img": "Gurke.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -184,7 +184,7 @@
             "id": 16,
             "name": "Kartoffeln",
             "description": "Vorzucht: -, Pflanzung: April-Mai, Direktsaat: -, Ernte:Juni-Sep.",
-            "img": "",
+            "img": "Kartoffel.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -196,7 +196,7 @@
             "id": 17,
             "name": "Knoblauch",
             "description": "Vorzucht: -, Pflanzung: September-Oktobe, Direktsaat: -, Ernte: September",
-            "img": "",
+            "img": "Knoblauch.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -208,7 +208,7 @@
             "id": 18,
             "name": "Kohl",
             "description": "Vorzucht: März-Juni, Pflanzung: April-Juli, Direktsaat: -, Ernte: Juli-Okt.",
-            "img": "",
+            "img": "Weißkohl.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -244,8 +244,8 @@
         {
             "id": 21,
             "name": "Lauch",
-            "description": "Lauch.png",
-            "img": "",
+            "description": "",
+            "img": "Lauch.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -353,7 +353,7 @@
             "id": 30,
             "name": "Radieschen",
             "description": "Vorzucht: -, Pflanzung: -, Direktsaat: Feb.-Aug., Ernte: April-Sept.",
-            "img": "",
+            "img": "Radieschen.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -377,7 +377,7 @@
             "id": 32,
             "name": "Rettich",
             "description": "",
-            "img": "",
+            "img": "Rettich.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
@@ -425,7 +425,7 @@
             "id": 36,
             "name": "Spinat",
             "description": "Vorzucht: -, Pflanzung:  Mitte September, Direktsaat: -, Ernte: Mitte November bis Anfang April",
-            "img": "",
+            "img": "Spinat.png",
             "state": "inital",
             "radius": 20,
             "ratio": {
